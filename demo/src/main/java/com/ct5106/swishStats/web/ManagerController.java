@@ -23,8 +23,8 @@ public class ManagerController {
         return managerRepository.findAll();
     }
 
-    @GetMapping("/manager/teams")
+    /*@GetMapping("/manager/team")
     public Iterable<Team> getAllTeamsForManager() { //get all teams that have a manager
         return teamRepository.findAll();
-    }
+    }*/
 }

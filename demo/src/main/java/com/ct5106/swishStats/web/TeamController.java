@@ -26,7 +26,7 @@ public class TeamController {
         
     }
 
-    @GetMapping("/teams")
+    @GetMapping("/team")
     public Iterable<Team> getAllTeams(
         @RequestParam(required = false) Integer minRating,
         @RequestParam(required = false) Integer maxRating) {
@@ -37,13 +37,13 @@ public class TeamController {
             }
         }
     
-    @GetMapping("/team/players")
+    @GetMapping("/team/player")
     public Iterable<Player> getAllPlayersForTeam() { //get all players that have a team
         return playerRepository.findAll();
     }
     
-    @GetMapping("/team/league")
+    /*@GetMapping("/team/league")
     public Iterable<League> getAllLeaguesForTeam() { //get all leaves that have a team in them
         return leagueRepository.findAll();
-    }
+    }*/
 }

@@ -32,8 +32,8 @@ public class PlayerController {
         }
     }
 
-    @GetMapping("/player/teams")
+   /* @GetMapping("/player/team")
     public Iterable<Team> getAllTeamsForPlayer() {
         return teamRepository.findAll(); //get all teams that have players
-    }
+    } */
 }
