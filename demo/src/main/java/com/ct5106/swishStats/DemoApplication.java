@@ -1,10 +1,12 @@
 package com.ct5106.swishStats;
 
+import com.ct5106.swishStats.domain.AppUser;
 import com.ct5106.swishStats.domain.League;
 import com.ct5106.swishStats.domain.Manager;
 import com.ct5106.swishStats.domain.Player;
 import com.ct5106.swishStats.domain.Team;
 import com.ct5106.swishStats.repository.TeamRepository;
+import com.ct5106.swishStats.repository.AppUserRepository;
 import com.ct5106.swishStats.repository.LeagueRepository;
 import com.ct5106.swishStats.repository.ManagerRepository;
 import com.ct5106.swishStats.repository.PlayerRepository;
@@ -22,14 +24,16 @@ public class DemoApplication implements CommandLineRunner
 	private final TeamRepository teamRepository;
 	private final PlayerRepository playerRepository;
 	private final ManagerRepository managerRepository;
+	private final AppUserRepository appUserRepository;
 	private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
-	public DemoApplication(LeagueRepository leagueRepository, TeamRepository teamRepository, PlayerRepository playerRepository, ManagerRepository managerRepository)
+	public DemoApplication(LeagueRepository leagueRepository, TeamRepository teamRepository, PlayerRepository playerRepository, ManagerRepository managerRepository, AppUserRepository appUserRepository)
 	{
 		this.leagueRepository = leagueRepository;
 		this.teamRepository = teamRepository;
 		this.playerRepository = playerRepository;
 		this.managerRepository = managerRepository;
+		this.appUserRepository = appUserRepository;
 	}
 
 
@@ -41,6 +45,17 @@ public class DemoApplication implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception
 	{
+		// username, password, role
+		// "user", "user", "USER"
+		appUserRepository.save(new
+		AppUser("user","$2a$10$NVM0n8ElaRgg7zWO1CxUdei7vWoPg91Lz2aYavh9.f9q0e4bRadue","USER"))
+		;
+		// "admin", "admin", ADMIN"
+		appUserRepository.save(new
+		AppUser("admin","$2a$10$8cjz47bjbR4Mn8GMg9IZx.vyjhLXR/SKKMSZ9.mP9vpMu0ssKi8GW",
+		"ADMIN"));
+
+		//fill database data
 		League PremierLeague = new League("Premier League");
 		League Championship = new League("Championship");
 		League MLS = new League("Major League Soccer");
